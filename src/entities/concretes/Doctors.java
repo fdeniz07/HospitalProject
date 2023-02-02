@@ -2,62 +2,58 @@ package entities.concretes;
 
 import entities.abstracts.Users;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Doctors extends Users {
 
-    private List<Titles> titles = new ArrayList<>();
-    private List<Branches> branches = new ArrayList<>();
-    private List<DoctorSituation> doctorSituations = new ArrayList<>();
+    private Titles title;
+    private Branches branch;
+    private DoctorSituation doctorSituation;
 
     public Doctors() {
 
     }
 
-    public Doctors(List<Titles> titles, List<Branches> branches, List<DoctorSituation> doctorSituations) {
-        this.titles = titles;
-        this.branches = branches;
-        this.doctorSituations = doctorSituations;
+    public Doctors(Titles title, Branches branch, DoctorSituation doctorSituation) {
+        this.title = title;
+        this.branch = branch;
+        this.doctorSituation = doctorSituation;
     }
 
-    public Doctors(String id, String firstName, String lastName, List<Titles> titles, List<Branches> branches, List<DoctorSituation> doctorSituations) {
+    public Doctors(String id, String firstName, String lastName, Titles title, Branches branch, DoctorSituation doctorSituation) {
         super(id, firstName, lastName);
-        this.titles = titles;
-        this.branches = branches;
-        this.doctorSituations = doctorSituations;
+        this.title = title;
+        this.branch = branch;
+        this.doctorSituation = doctorSituation;
     }
 
-    public List<Titles> getTitles() {
-        return titles;
+    public Titles getTitle() {
+        return title;
     }
 
-    public void setTitles(List<Titles> titles) {
-        this.titles = titles;
+    public void setTitle(Titles title) {
+        this.title = title;
     }
 
-    public List<Branches> getBranches() {
-        return branches;
+    public Branches getBranch() {
+        return branch;
     }
 
-    public void setBranches(List<Branches> branches) {
-        this.branches = branches;
+    public void setBranch(Branches branch) {
+        this.branch = branch;
     }
 
-    public List<DoctorSituation> getDoctorSituations() {
-        return doctorSituations;
+    public DoctorSituation getDoctorSituation() {
+        return doctorSituation;
     }
 
-    public void setDoctorSituations(List<DoctorSituation> doctorSituations) {
-        this.doctorSituations = doctorSituations;
+    public void setDoctorSituation(DoctorSituation doctorSituation) {
+        this.doctorSituation = doctorSituation;
     }
 
     @Override
     public String toString() {
         return
-                "titles=" + titles +
-                        ", branches=" + branches +
-                        ", doctorSituations=" + doctorSituations +
-                        '}';
+                "title=" + title +
+                ", branch=" + branch +
+                ", doctorSituation=" + doctorSituation;
     }
 }

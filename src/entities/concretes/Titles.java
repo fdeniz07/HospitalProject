@@ -1,17 +1,21 @@
 package entities.concretes;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Titles {
 
     private int id;
     private String title;
-
+    private List<Doctors> doctorsList=new ArrayList<>();
 
     public Titles() {
     }
 
-    public Titles(int id, String title) {
+    public Titles(int id, String title, List<Doctors> doctorsList) {
         this.id = id;
         this.title = title;
+        this.doctorsList = doctorsList;
     }
 
     public int getId() {
@@ -30,10 +34,19 @@ public class Titles {
         this.title = title;
     }
 
-    @Override
-    public String toString() {
-        return  "id=" + id +
-                ", title='" + title + '\'' ;
+    public List<Doctors> getDoctorsList() {
+        return doctorsList;
     }
 
+    public void setDoctorsList(List<Doctors> doctorsList) {
+        this.doctorsList = doctorsList;
+    }
+
+    @Override
+    public String toString() {
+        return
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", doctorsList=" + doctorsList;
+    }
 }
