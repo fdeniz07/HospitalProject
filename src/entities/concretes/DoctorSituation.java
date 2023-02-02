@@ -63,6 +63,11 @@ public class DoctorSituation {
         DoctorSituation ds2= new DoctorSituation(21,"Ameliyatta");
         DoctorSituation ds3 = new DoctorSituation(22,"Müsait");
         DoctorSituation ds4 = new DoctorSituation(23,"Muayenede");
+
+        situationList.add(ds1);
+        situationList.add(ds2);
+        situationList.add(ds3);
+        situationList.add(ds4);
     }
 
     public DoctorSituation getDoctorSituationById(int id) {

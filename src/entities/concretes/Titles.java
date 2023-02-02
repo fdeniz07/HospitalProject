@@ -58,17 +58,24 @@ public class Titles {
     }
 
     public void fillTitles() {
-        Titles title1 = new Titles(10,"Pratisyen");
-        Titles title2 = new Titles(11,"Uzman");
-        Titles title3 = new Titles(12,"Operatör");
-        Titles title4 = new Titles(13,"Yardimci Docent");
-        Titles title5 = new Titles(14,"Doçent");
-        Titles title6 = new Titles(15,"Profesör");
+        Titles title1 = new Titles(10, "Pratisyen");
+        Titles title2 = new Titles(11, "Uzman");
+        Titles title3 = new Titles(12, "Operatör");
+        Titles title4 = new Titles(13, "Yardimci Docent");
+        Titles title5 = new Titles(14, "Doçent");
+        Titles title6 = new Titles(15, "Profesör");
+
+        titlesList.add(title1);
+        titlesList.add(title2);
+        titlesList.add(title3);
+        titlesList.add(title4);
+        titlesList.add(title5);
+        titlesList.add(title6);
     }
 
-    public Titles getTitleById (int id){
-        for (Titles w: titlesList){
-            if (w.id==id){
+    public Titles getTitleById(int id) {
+        for (Titles w : titlesList) {
+            if (w.id == id) {
                 return w;
             }
         }

@@ -39,5 +39,5 @@ public abstract class Users {
         LastName = lastName;
     }
 
-
+    public abstract void showUsers();
 }

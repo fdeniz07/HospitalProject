@@ -65,6 +65,12 @@ public class Branches {
         Branches branch3 = new Branches(102,"Fizyo Terapi");
         Branches branch4 = new Branches(103,"Ortopedi");
         Branches branch5 = new Branches(104,"Nöroloji");
+
+        branchesList.add(branch1);
+        branchesList.add(branch2);
+        branchesList.add(branch3);
+        branchesList.add(branch4);
+        branchesList.add(branch5);
     }
 
     public Branches getBranchById (int id){

@@ -1,12 +1,14 @@
 package entities.concretes;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LastStatuses {
 
-    private int id;
-    private String lastStatus; //devam ediyor, islem tamamlandi
-    private List<Patients> patientsList;
+    private int id;//1,2
+    private String lastStatus;//taburcu yada devam
+    private List<LastStatuses> lastStatusesList = new ArrayList<>();
+    private List<Patients> patientsList = new ArrayList<>();
 
     public LastStatuses() {
     }
@@ -15,6 +17,11 @@ public class LastStatuses {
         this.id = id;
         this.lastStatus = lastStatus;
         this.patientsList = patientsList;
+    }
+
+    public LastStatuses(int id, String lastStatus) {
+        this.id = id;
+        this.lastStatus = lastStatus;
     }
 
     public int getId() {
@@ -43,9 +50,26 @@ public class LastStatuses {
 
     @Override
     public String toString() {
-        return
-                "id=" + id +
+        return "id=" + id +
                 ", lastStatus='" + lastStatus + '\'' +
-                ", patientsList=" + patientsList ;
+                ", patientsList=" + patientsList;
+    }
+
+    public void fillLastStatusList() {
+        LastStatuses status1 = new LastStatuses(1, "devam ediyor");
+        LastStatuses status2 = new LastStatuses(2, "islem tamamlandi");
+
+        lastStatusesList.add(status1);
+        lastStatusesList.add(status2);
+
+    }
+
+    public LastStatuses getLastStatusById(int id) {
+        for (LastStatuses w : lastStatusesList) {
+            if (w.id == id) {
+                return w;
+            }
+        }
+        return null;
     }
 }
