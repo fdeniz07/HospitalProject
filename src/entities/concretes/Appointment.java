@@ -5,30 +5,42 @@ package entities.concretes;
 //            -hasta adı,Doktor,randevu tarihi
 public class Appointment {
 
-    private static int count=0;
+    private static int count = 0;
     private int id;
-    private String name;
+    private Patients patient;
     private Doctors doctor;
-    private String date;
+    private String appointmentDate;
 
-    public Appointment(String name, Doctors doctor, String date) {
+    public Appointment(Patients patient, Doctors doctor, String appointmentDate) {
         count++;
-        this.id=count;
-        this.name = name;
+        this.id = count;
+        this.patient = patient;
         this.doctor = doctor;
-        this.date = date;
+        this.appointmentDate = appointmentDate;
+    }
+
+    public static int getCount() {
+        return count;
+    }
+
+    public static void setCount(int count) {
+        Appointment.count = count;
     }
 
     public int getId() {
         return id;
     }
 
-    public String getName() {
-        return name;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public Patients getPatient() {
+        return patient;
+    }
+
+    public void setPatient(Patients patient) {
+        this.patient = patient;
     }
 
     public Doctors getDoctor() {
@@ -39,11 +51,21 @@ public class Appointment {
         this.doctor = doctor;
     }
 
-    public String getDate() {
-        return date;
+    public String getAppointmentDate() {
+        return appointmentDate;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setAppointmentDate(String appointmentDate) {
+        this.appointmentDate = appointmentDate;
+    }
+
+    @Override
+    public String toString() {
+        return
+                "id=" + id +
+                ", patient=" + patient +
+                ", doctor=" + doctor +
+                ", date='" + appointmentDate + '\''
+                ;
     }
 }
