@@ -1,7 +1,5 @@
 package core.validations;
 
-import entities.concretes.Reservation;
-
 import java.time.LocalDate;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -54,7 +52,7 @@ public class PickUpReturnDateValidator {
 
     public LocalDate getReturnValidDate() {
 
-        Reservation reservation = new Reservation();
+        //Reservation reservation = new Reservation();
 
         LocalDate returnDate = null;
         Scanner scanner = new Scanner(System.in);
