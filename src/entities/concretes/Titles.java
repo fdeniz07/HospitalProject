@@ -9,7 +9,7 @@ public class Titles {
     private String tittle;
     private List<Doctors> doctorsList = new ArrayList<>();
 
-    public List<Titles> titlesList = new ArrayList<>();
+    public static List<Titles> titlesList = new ArrayList<>();
 
     public Titles() {
     }
@@ -51,10 +51,8 @@ public class Titles {
 
     @Override
     public String toString() {
-        return
-                "id=" + id +
-                        ", tittle='" + tittle + '\'' +
-                        ", doctorsList=" + doctorsList;
+        return tittle ;
+
     }
 
     public void fillTitles() {
@@ -73,7 +71,7 @@ public class Titles {
         titlesList.add(title6);
     }
 
-    public Titles getTitleById(int id) {
+    public static Titles getTitleById(int id) {
         for (Titles w : titlesList) {
             if (w.id == id) {
                 return w;

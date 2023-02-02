@@ -8,9 +8,9 @@ public class Branches {
     private int id; //100,101,102
     private String branch;
 
-    public List<Branches> branchesList= new ArrayList<>();
+    public static List<Branches> branchesList = new ArrayList<>();
 
-    private List<Doctors> doctorsList=new ArrayList<>();
+    private List<Doctors> doctorsList = new ArrayList<>();
 
     public Branches() {
     }
@@ -54,17 +54,16 @@ public class Branches {
     @Override
     public String toString() {
         return
-                "id=" + id +
-                ", branch='" + branch + '\'' +
-                ", doctorsList=" + doctorsList ;
+                branch;
+
     }
 
-    public  void  fillBranchList(){
-        Branches branch1 = new Branches(100,"KBB");
-        Branches branch2 = new Branches(101,"Genel Cerrahi");
-        Branches branch3 = new Branches(102,"Fizyo Terapi");
-        Branches branch4 = new Branches(103,"Ortopedi");
-        Branches branch5 = new Branches(104,"Nöroloji");
+    public void fillBranchList() {
+        Branches branch1 = new Branches(100, "KBB");
+        Branches branch2 = new Branches(101, "Genel Cerrahi");
+        Branches branch3 = new Branches(102, "Fizyo Terapi");
+        Branches branch4 = new Branches(103, "Ortopedi");
+        Branches branch5 = new Branches(104, "Nöroloji");
 
         branchesList.add(branch1);
         branchesList.add(branch2);
@@ -73,9 +72,9 @@ public class Branches {
         branchesList.add(branch5);
     }
 
-    public Branches getBranchById (int id){
-        for (Branches w: branchesList){
-            if (w.id==id){
+    public static Branches getBranchById(int id) {
+        for (Branches w : branchesList) {
+            if (w.id == id) {
                 return w;
             }
         }

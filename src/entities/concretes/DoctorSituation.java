@@ -10,7 +10,7 @@ public class DoctorSituation {
     private String situation; //Izinli,Ameliyatta,Müsait,Muayenede
     private List<Doctors> doctorsList = new ArrayList<>();
 
-    public List<DoctorSituation> situationList = new ArrayList<>();
+    public static List<DoctorSituation> situationList = new ArrayList<>();
 
     public DoctorSituation() {
     }
@@ -53,16 +53,14 @@ public class DoctorSituation {
     @Override
     public String toString() {
         return
-                "id=" + id +
-                        ", situation='" + situation + '\'' +
-                        ", doctorsList=" + doctorsList;
+                situation;
     }
 
-    public void fillSituation(){
-        DoctorSituation ds1 = new DoctorSituation(20,"Izinli");
-        DoctorSituation ds2= new DoctorSituation(21,"Ameliyatta");
-        DoctorSituation ds3 = new DoctorSituation(22,"Müsait");
-        DoctorSituation ds4 = new DoctorSituation(23,"Muayenede");
+    public void fillSituation() {
+        DoctorSituation ds1 = new DoctorSituation(20, "Izinli");
+        DoctorSituation ds2 = new DoctorSituation(21, "Ameliyatta");
+        DoctorSituation ds3 = new DoctorSituation(22, "Müsait");
+        DoctorSituation ds4 = new DoctorSituation(23, "Muayenede");
 
         situationList.add(ds1);
         situationList.add(ds2);
@@ -70,7 +68,7 @@ public class DoctorSituation {
         situationList.add(ds4);
     }
 
-    public DoctorSituation getDoctorSituationById(int id) {
+    public static DoctorSituation getDoctorSituationById(int id) {
         for (DoctorSituation w : situationList) {
             if (w.id == id) {
                 return w;
