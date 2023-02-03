@@ -7,7 +7,7 @@ public class LastStatuses {
 
     private int id;//1,2
     private String lastStatus;//taburcu yada devam
-    private List<LastStatuses> lastStatusesList = new ArrayList<>();
+    public static List<LastStatuses> lastStatusesList = new ArrayList<>();
     private List<Patients> patientsList = new ArrayList<>();
 
     public LastStatuses() {
@@ -50,9 +50,7 @@ public class LastStatuses {
 
     @Override
     public String toString() {
-        return "id=" + id +
-                ", lastStatus='" + lastStatus + '\'' +
-                ", patientsList=" + patientsList;
+        return lastStatus;
     }
 
     public void fillLastStatusList() {
@@ -64,7 +62,7 @@ public class LastStatuses {
 
     }
 
-    public LastStatuses getLastStatusById(int id) {
+    public static LastStatuses getLastStatusById(int id) {
         for (LastStatuses w : lastStatusesList) {
             if (w.id == id) {
                 return w;

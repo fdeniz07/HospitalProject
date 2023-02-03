@@ -8,7 +8,7 @@ public class Complaints {
     private int id; //1,2,3
     private String complaint; // Bas agrisi, kusma,bulanti,...
     private List<Patients> patientsList = new ArrayList<>();
-    public List<Complaints> complaintsList = new ArrayList<>();
+    public static List<Complaints> complaintsList = new ArrayList<>();
 
     public Complaints() {
     }
@@ -50,10 +50,7 @@ public class Complaints {
 
     @Override
     public String toString() {
-        return
-                "id=" + id +
-                        ", complaint='" + complaint + '\'' +
-                        ", patientsList=" + patientsList;
+        return complaint;
     }
 
     public void fillComplaintList() {
@@ -70,7 +67,7 @@ public class Complaints {
         complaintsList.add(complaint5);
     }
 
-    public Complaints getComplaintById(int id) {
+    public static Complaints getComplaintById(int id) {
         for (Complaints w : complaintsList) {
             if (w.id == id) {
                 return w;

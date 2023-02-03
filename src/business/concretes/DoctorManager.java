@@ -24,7 +24,7 @@ public class DoctorManager implements IdMaker {
     NameValidator nameValidator = new NameValidator();
     TcNoValidator tcNoValidator = new TcNoValidator();
 
-    private static int drIdCounter = 504;
+    private static int drIdCounter = 557;
 
     @Override
     public String idMaker(String number) {
@@ -47,7 +47,7 @@ public class DoctorManager implements IdMaker {
 
 //        System.out.println("Lütfen eklemek istediğiniz doktorun doğum tarihini giriniz: "); eklenebilir
         System.out.println("Lütfen eklemek istediğiniz doktorun üvanını seçiniz: ");
-        titlesList.stream().forEach(t -> System.out.println("Id: " + t.getId() + " --> " + t.getTittle()));
+        titlesList.forEach(t -> System.out.println("Id: " + t.getId() + " --> " + t.getTittle()));
 
         System.out.println("\nÜnvan id'sini giriniz: ");
         String titleId = inp.nextLine().replaceAll("[^0-9]", "");
@@ -60,7 +60,7 @@ public class DoctorManager implements IdMaker {
         }
         doctors.setTitle(title);
         System.out.println("Lütfen eklemek istediğiniz doktorun branşını seçiniz: ");
-        branchesList.stream().forEach(t -> System.out.println("Id: " + t.getId() + " --> " + t.getBranch()));
+        branchesList.forEach(t -> System.out.println("Id: " + t.getId() + " --> " + t.getBranch()));
 
         System.out.println("\nBranş id'sini giriniz: ");
         String branchId = inp.nextLine().replaceAll("[^0-9]", "");

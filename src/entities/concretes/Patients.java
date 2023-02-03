@@ -16,7 +16,7 @@ public class Patients extends Users {
     private Priorities priority;
     private Complaints complaint;
     private LastStatuses lastStatus;
-    public List<Patients> patientsList = new ArrayList<>();
+    public static List<Patients> patientsList = new ArrayList<>();
 
     public Patients(){
     }
@@ -76,39 +76,54 @@ public class Patients extends Users {
     @Override
     public String toString() {
         return
-                "id=" + super.getId() +
-                        ",adi=" + super.getFirstName() +
-                        ",soyadi=" + super.getLastName() +
-                        "tcNo='" + tcNo + '\'' +
-                        ", birthDate=" + birthDate +
-                        ", gender=" + gender +
-                        ", priority=" + priority +
-                        ", complaint=" + complaint +
-                        ", lastStatus=" + lastStatus;
+                "Randevu No :" + super.getId() +
+                        ", Adi :" + super.getFirstName() +
+                        ", Soyadi :" + super.getLastName() +
+                        ", TC NO :'" + tcNo + '\'' +
+                        ", Dogum Tarihi :" + birthDate +
+                        ", Cinsiyet :" + gender +
+                        ", Aciliyet :" + priority +
+                        ", Sikayet : "+ complaint +
+                        ", Islem Durumu :" + lastStatus;
     }
     public void fillPatientsList(){
-        Patients patient1 = new Patients("PT1001","Ali","Tekin","11223344556",LocalDate.of(1990,10,19),Gender.getGender(1),priority.getPrioritiesById(31),complaint.getComplaintById(1),lastStatus.getLastStatusById(1));
-        Patients patient2 = new Patients("PT1002","Ramiz","Karaeski","22334455667",LocalDate.of(1999,6,29),Gender.getGender(1),priority.getPrioritiesById(31),complaint.getComplaintById(2),lastStatus.getLastStatusById(2));
-        Patients patient3 = new Patients("PT1003","Enes","Durgun","55556666777",LocalDate.of(1970,11,9),Gender.getGender(1),priority.getPrioritiesById(31),complaint.getComplaintById(3),lastStatus.getLastStatusById(2));
-        Patients patient4 = new Patients("PT1004","Asli","Yilmaz","11111111111",LocalDate.of(1970,11,9),Gender.getGender(1),priority.getPrioritiesById(31),complaint.getComplaintById(3),lastStatus.getLastStatusById(2));
+        Patients patient1 = new Patients("HT1001556","Ali","Tekin","11223344556",LocalDate.of(1990,10,19),Gender.getGender(1),Priorities.getPrioritiesById(31),Complaints.getComplaintById(1),LastStatuses.getLastStatusById(2));
+        Patients patient2 = new Patients("HT1002667","Ramiz","Karaeski","22334455667",LocalDate.of(1999,6,29),Gender.getGender(1),Priorities.getPrioritiesById(33),Complaints.getComplaintById(2),LastStatuses.getLastStatusById(2));
+        Patients patient3 = new Patients("HT1003777","Enes","Durgun","55556666777",LocalDate.of(1970,11,9),Gender.getGender(1),Priorities.getPrioritiesById(32),Complaints.getComplaintById(3),LastStatuses.getLastStatusById(2));
+        Patients patient4 = new Patients("HT1004111","Asli","Yilmaz","11111111111",LocalDate.of(1970,11,9),Gender.getGender(1),Priorities.getPrioritiesById(31),Complaints.getComplaintById(4),LastStatuses.getLastStatusById(2));
+        Patients patient5 = new Patients("HT1005556","Ali","Tekin","11223344556",LocalDate.of(1990,10,19),Gender.getGender(1),Priorities.getPrioritiesById(32),Complaints.getComplaintById(2),LastStatuses.getLastStatusById(1));
+        Patients patient6 = new Patients("HT1006777","Enes","Durgun","55556666777",LocalDate.of(1970,11,9),Gender.getGender(1),Priorities.getPrioritiesById(32),Complaints.getComplaintById(3),LastStatuses.getLastStatusById(1));
+        Patients patient7 = new Patients("HT1007556","Ali","Tekin","11223344556",LocalDate.of(1990,10,19),Gender.getGender(1),Priorities.getPrioritiesById(33),Complaints.getComplaintById(3),LastStatuses.getLastStatusById(1));
 
         patientsList.add(patient1);
         patientsList.add(patient2);
         patientsList.add(patient3);
         patientsList.add(patient4);
+        patientsList.add(patient5);
+        patientsList.add(patient6);
+        patientsList.add(patient7);
     }
 
     @Override
     public void showUsers() {
         System.out.println();
         System.out.println("////////////////////////////////////// HASTA LISTESI \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ \n");
-        System.out.printf("%-9s  %-20s  %-20s  %-11s  %-10s  %-6s  %-10s %-12s %-12s\n","Hasta Kodu","Hasta Ad","Hasta Soyad","TC NO","Dogum Tarihi","Cinsiyet","Aciliyet","Sikayet","Islem Durumu");
-        System.out.printf("%-9s  %-20s  %-20s  %-11s  %-10s  %-6s  %-10s %-12s %-12s\n","---------","--------------------","--------------------","-----------","----------","------------","------------","------------","------------");
+        System.out.printf("%-14s  %-15s  %-15s  %-14s  %-12s  %-7s  %-13s %-14s %-16s\n","Hasta Kodu","Hasta Ad","Hasta Soyad","TC NO","Dogum Tarihi","Cinsiyet","Aciliyet","Sikayet","Islem Durumu");
+        System.out.printf("%-14s  %-15s  %-15s  %-14s  %-12s  %-6s  %-13s %-14s %-16s\n","--------------","-------------","---------------","--------------","-------------","----------","-------------","-------------","----------------");
         for (Patients w :patientsList){
-            System.out.printf("\"\"%-9s  %-20s  %-20s  %-11s  %-10s  %-6s  %-10s %-12s %-12s\n",w.getId(),w.getFirstName(),w.getLastName(),w.getTcNo(),w.getBirthDate() ,w.getGender(),w.getPriority(),w.getComplaint(),w.getLastStatus());
+            System.out.printf("%-14s  %-15s  %-15s  %-14s  %-12s  %-8s  %-13s %-14s %-16s\n",w.getId(),w.getFirstName(),w.getLastName(),w.getTcNo(),w.getBirthDate() ,w.getGender(),w.getPriority(),w.getComplaint(),w.getLastStatus());
         }
         System.out.println();
 
+    }
+
+    public static Patients getPatientById(String id){
+        for (Patients w:patientsList){
+            if (w.getId().equals(id)){
+                return w;
+            }
+        }
+        return null;
     }
 }
 
