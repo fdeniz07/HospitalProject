@@ -10,7 +10,7 @@ public class NameValidator {
         String firstName = "";
         do {
             firstName = scan.nextLine().trim();
-            String s = firstName.replaceAll("[a-zA-Z]", "");
+            String s = firstName.replaceAll("[a-zA-Z ]", "");
 
             if (!s.isEmpty()) {
                 System.out.println("Harf dışında bir karakter girilemez...");
@@ -45,13 +45,8 @@ public class NameValidator {
                 lastName = lastName.substring(0, 1).toUpperCase() + lastName.substring(1);
                 break;
             }
-
-
         } while (true);
 
         return lastName;
-
     }
-
-
 }
