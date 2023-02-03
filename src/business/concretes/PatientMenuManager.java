@@ -1,6 +1,7 @@
 package business.concretes;
 
 import application.console.concretes.Start;
+import business.abstracts.MenuManager;
 import business.abstracts.MenuService;
 import core.Helpers.Slow;
 import entities.concretes.Complaints;
@@ -8,6 +9,7 @@ import entities.concretes.LastStatuses;
 import entities.concretes.Patients;
 import entities.concretes.Priorities;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import static entities.concretes.Complaints.complaintsList;
@@ -26,7 +28,7 @@ public class PatientMenuManager extends MenuManager implements MenuService {
 
     @Override
     public void getSelectionMenu() {
-        int select;
+
         priorities.fillPrioritiesList();
         complaints.fillComplaintList();
         lastStatuses.fillLastStatusList();
@@ -47,7 +49,17 @@ public class PatientMenuManager extends MenuManager implements MenuService {
             System.out.println("9-Ana Menu ");
             System.out.println("0-CIKIS");
             System.out.println("\nSeçiminiz: ");
-            select = inp.nextInt();
+
+            int select = -1;
+
+            try {
+                select = inp.nextInt();
+            } catch (InputMismatchException ie) {
+                System.out.println("Lütfen seciminizini asagidaki menü numaralarindan giriniz");
+                inp.nextLine();
+                getSelectionMenu();
+            }
+
 
             switch (select) {
                 case 1:
@@ -86,7 +98,7 @@ public class PatientMenuManager extends MenuManager implements MenuService {
                     System.out.println("Hatalı giriş yaptınız!");
                     break;
             }
-        } while (select != 0);
+        } while (true);
     }
 
 
@@ -110,17 +122,16 @@ public class PatientMenuManager extends MenuManager implements MenuService {
             System.out.println("\nSikayet id'sini giriniz: ");
             id = inp.nextLine().replaceAll("[^0-9]", "");
 
-            System.out.printf("%-9s  %-20s  %-20s  %-11s  %-10s  %-9s  %-12s %-12s %-12s\n","Hasta Kodu","Hasta Ad","Hasta Soyad","TC NO","Dogum Tarihi","Cinsiyet","Aciliyet","Sikayet","Islem Durumu");
-            System.out.printf("%-9s  %-20s  %-20s  %-11s  %-10s  %-6s  %-10s %-12s %-12s\n","---------","--------------------","--------------------","-----------","----------","------------","------------","------------","------------");
+            System.out.printf("%-9s  %-20s  %-20s  %-11s  %-10s  %-9s  %-12s %-12s %-12s\n", "Hasta Kodu", "Hasta Ad", "Hasta Soyad", "TC NO", "Dogum Tarihi", "Cinsiyet", "Aciliyet", "Sikayet", "Islem Durumu");
+            System.out.printf("%-9s  %-20s  %-20s  %-11s  %-10s  %-6s  %-10s %-12s %-12s\n", "---------", "--------------------", "--------------------", "-----------", "----------", "------------", "------------", "------------", "------------");
 
-            for (Patients w :patientsList) {
+            for (Patients w : patientsList) {
                 if (w.getComplaint().getId() == Integer.parseInt(id)) {
                     flag++;
-                    System.out.printf("\"\"%-9s  %-20s  %-20s  %-11s  %-10s  %-9s  %-12s %-12s %-12s\n",w.getId(),w.getFirstName(),w.getLastName(),w.getTcNo(),w.getBirthDate() ,w.getGender(),w.getPriority(),w.getComplaint(),w.getLastStatus());
+                    System.out.printf("\"\"%-9s  %-20s  %-20s  %-11s  %-10s  %-9s  %-12s %-12s %-12s\n", w.getId(), w.getFirstName(), w.getLastName(), w.getTcNo(), w.getBirthDate(), w.getGender(), w.getPriority(), w.getComplaint(), w.getLastStatus());
                 }
             }
-        }
-        else if (choise == 2) {
+        } else if (choise == 2) {
             System.out.println("Hangi aciliyete göre arama yapmak istiyorsunuz?");
             prioritiesList.
                     forEach(t -> System.out.println("Id:" + t.getId() + " --> " + t.getPriority()));
@@ -128,19 +139,18 @@ public class PatientMenuManager extends MenuManager implements MenuService {
             System.out.println("\nAciliyet id'sini giriniz: ");
             id = inp.nextLine().replaceAll("[^0-9]", "");
 
-            System.out.printf("%-9s  %-20s  %-20s  %-11s  %-10s  %-6s  %-10s %-12s %-12s\n","Hasta Kodu","Hasta Ad","Hasta Soyad","TC NO","Dogum Tarihi","Cinsiyet","Aciliyet","Sikayet","Islem Durumu");
-            System.out.printf("%-9s  %-20s  %-20s  %-11s  %-10s  %-6s  %-10s %-12s %-12s\n","---------","--------------------","--------------------","-----------","----------","------------","------------","------------","------------");
+            System.out.printf("%-9s  %-20s  %-20s  %-11s  %-10s  %-6s  %-10s %-12s %-12s\n", "Hasta Kodu", "Hasta Ad", "Hasta Soyad", "TC NO", "Dogum Tarihi", "Cinsiyet", "Aciliyet", "Sikayet", "Islem Durumu");
+            System.out.printf("%-9s  %-20s  %-20s  %-11s  %-10s  %-6s  %-10s %-12s %-12s\n", "---------", "--------------------", "--------------------", "-----------", "----------", "------------", "------------", "------------", "------------");
 
-            for (Patients w :patientsList) {
+            for (Patients w : patientsList) {
                 if (w.getPriority().getId() == Integer.parseInt(id)) {
                     flag++;
-                    System.out.printf("\"\"%-9s  %-20s  %-20s  %-11s  %-10s  %-6s  %-10s %-12s %-12s\n",w.getId(),w.getFirstName(),w.getLastName(),w.getTcNo(),w.getBirthDate() ,w.getGender(),w.getPriority(),w.getComplaint(),w.getLastStatus());
+                    System.out.printf("\"\"%-9s  %-20s  %-20s  %-11s  %-10s  %-6s  %-10s %-12s %-12s\n", w.getId(), w.getFirstName(), w.getLastName(), w.getTcNo(), w.getBirthDate(), w.getGender(), w.getPriority(), w.getComplaint(), w.getLastStatus());
                 }
             }
 
 
-        }
-        else if (choise == 3) {
+        } else if (choise == 3) {
             System.out.println("Hangi TC NO'ya göre arama yapmak istiyorsunuz?");
             patientsList.
                     forEach(t -> System.out.println("Id:" + t.getId() + " --> " + t.getTcNo()));
@@ -148,17 +158,16 @@ public class PatientMenuManager extends MenuManager implements MenuService {
             System.out.println("\nHasta TC NO'sunu giriniz: ");
             id = inp.nextLine().replaceAll("[^0-9]", "");
 
-            System.out.printf("%-9s  %-20s  %-20s  %-11s  %-10s  %-6s  %-10s %-12s %-12s\n","Hasta Kodu","Hasta Ad","Hasta Soyad","TC NO","Dogum Tarihi","Cinsiyet","Aciliyet","Sikayet","Islem Durumu");
-            System.out.printf("%-9s  %-20s  %-20s  %-11s  %-10s  %-6s  %-10s %-12s %-12s\n","---------","--------------------","--------------------","-----------","----------","------------","------------","------------","------------");
+            System.out.printf("%-9s  %-20s  %-20s  %-11s  %-10s  %-6s  %-10s %-12s %-12s\n", "Hasta Kodu", "Hasta Ad", "Hasta Soyad", "TC NO", "Dogum Tarihi", "Cinsiyet", "Aciliyet", "Sikayet", "Islem Durumu");
+            System.out.printf("%-9s  %-20s  %-20s  %-11s  %-10s  %-6s  %-10s %-12s %-12s\n", "---------", "--------------------", "--------------------", "-----------", "----------", "------------", "------------", "------------", "------------");
 
-            for (Patients w :patientsList) {
+            for (Patients w : patientsList) {
                 if (w.getTcNo().equals(id)) {
                     flag++;
-                    System.out.printf("\"\"%-9s  %-20s  %-20s  %-11s  %-10s  %-6s  %-10s %-12s %-12s\n",w.getId(),w.getFirstName(),w.getLastName(),w.getTcNo(),w.getBirthDate() ,w.getGender(),w.getPriority(),w.getComplaint(),w.getLastStatus());
+                    System.out.printf("\"\"%-9s  %-20s  %-20s  %-11s  %-10s  %-6s  %-10s %-12s %-12s\n", w.getId(), w.getFirstName(), w.getLastName(), w.getTcNo(), w.getBirthDate(), w.getGender(), w.getPriority(), w.getComplaint(), w.getLastStatus());
                 }
             }
-        }
-        else if (choise == 4) {
+        } else if (choise == 4) {
             System.out.println("Hangi randevu numarasina göre arama yapmak istiyorsunuz?");
             patientsList.
                     forEach(t -> System.out.println("Id:" + t.getId() + " --> " + t.getId()));
@@ -166,13 +175,13 @@ public class PatientMenuManager extends MenuManager implements MenuService {
             System.out.println("\nRandevu numarasini giriniz: ");
             id = inp.nextLine().replaceAll("[^0-9]", "");
 
-            System.out.printf("%-9s  %-20s  %-20s  %-11s  %-10s  %-6s  %-10s %-12s %-12s\n","Hasta Kodu","Hasta Ad","Hasta Soyad","TC NO","Dogum Tarihi","Cinsiyet","Aciliyet","Sikayet","Islem Durumu");
-            System.out.printf("%-9s  %-20s  %-20s  %-11s  %-10s  %-6s  %-10s %-12s %-12s\n","---------","--------------------","--------------------","-----------","----------","------------","------------","------------","------------");
+            System.out.printf("%-9s  %-20s  %-20s  %-11s  %-10s  %-6s  %-10s %-12s %-12s\n", "Hasta Kodu", "Hasta Ad", "Hasta Soyad", "TC NO", "Dogum Tarihi", "Cinsiyet", "Aciliyet", "Sikayet", "Islem Durumu");
+            System.out.printf("%-9s  %-20s  %-20s  %-11s  %-10s  %-6s  %-10s %-12s %-12s\n", "---------", "--------------------", "--------------------", "-----------", "----------", "------------", "------------", "------------", "------------");
 
-            for (Patients w :patientsList) {
+            for (Patients w : patientsList) {
                 if (w.getId().equals(id)) {
                     flag++;
-                    System.out.printf("\"\"%-9s  %-20s  %-20s  %-11s  %-10s  %-6s  %-10s %-12s %-12s\n",w.getId(),w.getFirstName(),w.getLastName(),w.getTcNo(),w.getBirthDate() ,w.getGender(),w.getPriority(),w.getComplaint(),w.getLastStatus());
+                    System.out.printf("\"\"%-9s  %-20s  %-20s  %-11s  %-10s  %-6s  %-10s %-12s %-12s\n", w.getId(), w.getFirstName(), w.getLastName(), w.getTcNo(), w.getBirthDate(), w.getGender(), w.getPriority(), w.getComplaint(), w.getLastStatus());
                 }
             }
         }

@@ -4,6 +4,7 @@ import business.concretes.DoctorMenuManager;
 import business.concretes.PatientMenuManager;
 import core.Helpers.Slow;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Start {
@@ -17,7 +18,7 @@ public class Start {
 
         String s = "İyi günler, saglikli günler dileriz...";
 
-        int select;
+        int select =-1;
 
         do {
             System.out.println();
@@ -28,7 +29,13 @@ public class Start {
             System.out.println("0-Çıkış");
             System.out.println("\nSeçiminiz: ");
 
-            select = inp.nextInt();
+            try{
+                select = inp.nextInt();
+            }
+            catch (InputMismatchException ie){
+                System.out.println("Lütfen seciminizini asagidaki menü numaralarindan giriniz");
+                start();
+            }
 
             switch (select){
                 case 1:

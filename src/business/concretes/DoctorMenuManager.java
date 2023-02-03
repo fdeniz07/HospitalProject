@@ -1,6 +1,7 @@
 package business.concretes;
 
 import application.console.concretes.Start;
+import business.abstracts.MenuManager;
 import business.abstracts.MenuService;
 import core.Helpers.Slow;
 import entities.concretes.Branches;
@@ -8,6 +9,7 @@ import entities.concretes.DoctorSituation;
 import entities.concretes.Doctors;
 import entities.concretes.Titles;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import static entities.concretes.Branches.branchesList;
@@ -26,7 +28,8 @@ public class DoctorMenuManager extends MenuManager implements MenuService {
 
     @Override
     public void getSelectionMenu() {
-        int select;
+
+
         titles.fillTitles();
         branches.fillBranchList();
         doctorSituation.fillSituation();
@@ -45,7 +48,17 @@ public class DoctorMenuManager extends MenuManager implements MenuService {
             System.out.println("7-Ana Menu ");
             System.out.println("0-CIKIS");
             System.out.println("\nSeçiminiz: ");
-            select = inp.nextInt();
+
+            int select=-1;
+
+            try{
+                select = inp.nextInt();
+            }
+            catch (InputMismatchException ie){
+                System.out.println("Lütfen seciminizini asagidaki menü numaralarindan giriniz");
+                inp.nextLine();
+                getSelectionMenu();
+            }
 
             switch (select) {
                 case 1:
@@ -76,7 +89,7 @@ public class DoctorMenuManager extends MenuManager implements MenuService {
                     Slow.slowPrint(s,30);
                     System.exit(0);
             }
-        }while (select!=0);
+        }while (true);
 
     }
 

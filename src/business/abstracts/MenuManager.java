@@ -1,4 +1,4 @@
-package business.concretes;
+package business.abstracts;
 
 public abstract class MenuManager {
 
