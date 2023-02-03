@@ -1,6 +1,6 @@
 package entities.concretes;
 
-import core.helpers.Gender;
+import core.Helpers.Gender;
 import entities.abstracts.Users;
 
 

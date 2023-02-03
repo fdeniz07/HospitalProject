@@ -1,7 +1,7 @@
 package application.console.concretes;
 
 import business.concretes.DoctorMenuManager;
-import core.helpers.Slow;
+import core.Helpers.Slow;
 
 import java.util.Scanner;
 
@@ -13,6 +13,8 @@ public class Start {
 
         DoctorMenuManager dmm = new DoctorMenuManager();
 
+        String s = "İyi günler, saglikli günler dileriz...";
+
         int select;
 
         do {
@@ -22,6 +24,7 @@ public class Start {
             System.out.println("1-Doktor Menüsü Seçimi");
             System.out.println("2-Hasta Menüsü Seçimi");
             System.out.println("0-Çıkış");
+            System.out.println("\nSeçiminiz: ");
 
             select = inp.nextInt();
 
@@ -33,17 +36,16 @@ public class Start {
                     //HastaMenü
                     break;
                 case 0:
+                    Slow.slowPrint(s,30);
+                    System.exit(0);
                     break;
                 default:
                     System.out.println("Hatalı giriş yaptınız!");
                     break;
             }
+        }while(true);
 
 
-
-        }while(select != 0);
-
-        System.out.println("İyi günler, saglikli günler dileriz...");
     }
 
 }

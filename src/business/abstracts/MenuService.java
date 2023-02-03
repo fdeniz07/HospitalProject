@@ -4,7 +4,7 @@ public interface MenuService {
 
     void getUserList();
 
-    void search();
+    void search(int choise);
 
     void addUser();
 

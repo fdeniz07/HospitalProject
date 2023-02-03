@@ -1,4 +1,4 @@
-package core.helpers;
+package core.Helpers;
 
 public interface IdMaker {
 
