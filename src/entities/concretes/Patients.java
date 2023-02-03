@@ -108,10 +108,9 @@ public class Patients extends Users {
     public void showUsers() {
         System.out.println();
         System.out.println("////////////////////////////////////// HASTA LISTESI \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ \n");
-        System.out.printf("%-14s  %-15s  %-15s  %-14s  %-12s  %-7s  %-13s %-14s %-16s\n","Hasta Kodu","Hasta Ad","Hasta Soyad","TC NO","Dogum Tarihi","Cinsiyet","Aciliyet","Sikayet","Islem Durumu");
-        System.out.printf("%-14s  %-15s  %-15s  %-14s  %-12s  %-6s  %-13s %-14s %-16s\n","--------------","-------------","---------------","--------------","-------------","----------","-------------","-------------","----------------");
-        for (Patients w :patientsList){
-            System.out.printf("%-14s  %-15s  %-15s  %-14s  %-12s  %-8s  %-13s %-14s %-16s\n",w.getId(),w.getFirstName(),w.getLastName(),w.getTcNo(),w.getBirthDate() ,w.getGender(),w.getPriority(),w.getComplaint(),w.getLastStatus());
+        System.out.printf("%-14s  %-15s  %-15s  %-14s  %-14s  %-9s  %-13s %-14s %-16s\n","Randevu Kodu","Hasta Ad","Hasta Soyad","TC NO","Dogum Tarihi","Cinsiyet","Aciliyet","Sikayet","Islem Durumu");
+        System.out.printf("%-14s  %-15s  %-15s  %-14s  %-14s  %-9s  %-13s %-14s %-16s\n","----------","--------","-----------","-----","------------","--------","--------","-------","------------"); for (Patients w :patientsList){
+            System.out.printf("%-14s  %-15s  %-15s  %-14s  %-14s  %-9s  %-13s %-14s %-16s\n",w.getId(),w.getFirstName(),w.getLastName(),w.getTcNo(),w.getBirthDate() ,w.getGender(),w.getPriority(),w.getComplaint(),w.getLastStatus());
         }
         System.out.println();
 

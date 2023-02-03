@@ -90,16 +90,12 @@ public class DoctorMenuManager extends MenuManager implements MenuService {
                     System.exit(0);
             }
         }while (true);
-
     }
-
 
     @Override
     public void getUserList() {
         doctors.showUsers();
     }
-
-
 
     @Override
     public void search(int choise) {
