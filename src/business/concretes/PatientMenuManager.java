@@ -110,7 +110,7 @@ public class PatientMenuManager extends MenuManager implements MenuService {
 
     @Override
     public void search(int choise) {
-        inp.nextLine();
+
         String strId = "0";
         int id=0;
         int flag = 0;
@@ -120,16 +120,15 @@ public class PatientMenuManager extends MenuManager implements MenuService {
             complaintsList.
                     forEach(t -> System.out.println(t.getId() + " --> " + t.getComplaint()));
 
-            System.out.println("\nSikayet strId'sini giriniz: ");
+            System.out.println("\nSikayet Id'sini giriniz: ");
 
             try{
                 strId = inp.nextLine();
                 id= Integer.parseInt(strId);
             }
             catch (Exception e){
-
                 System.out.println("Lütfen seciminizini sayi olarak giriniz");
-                search(1);
+                this.search(1);
             }
 
             System.out.printf("%-14s  %-15s  %-15s  %-14s  %-14s  %-9s  %-13s %-14s %-16s\n", "Randevu Kodu", "Hasta Ad", "Hasta Soyad", "TC NO", "Dogum Tarihi", "Cinsiyet", "Aciliyet", "Sikayet", "Islem Durumu");

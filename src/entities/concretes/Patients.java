@@ -16,6 +16,7 @@ public class Patients extends Users {
     private Priorities priority;
     private Complaints complaint;
     private LastStatuses lastStatus;
+    //private LocalDate appointmentDate;
     public static List<Patients> patientsList = new ArrayList<>();
 
     public Patients(){
