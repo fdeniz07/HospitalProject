@@ -4,6 +4,7 @@ import application.console.concretes.Start;
 import business.abstracts.MenuManager;
 import business.abstracts.MenuService;
 import core.Helpers.Slow;
+import core.validations.InputValidator;
 import entities.concretes.Complaints;
 import entities.concretes.LastStatuses;
 import entities.concretes.Patients;
@@ -18,6 +19,8 @@ import static entities.concretes.Priorities.prioritiesList;
 
 public class PatientMenuManager extends MenuManager implements MenuService {
 
+    //Generic Repository ve Dependency Injection Yapilari ögrenilince bu kisim sadelestirilecek!
+
     Scanner inp = new Scanner(System.in);
     Patients patients = new Patients();
     PatientManager patientManager = new PatientManager();
@@ -25,6 +28,8 @@ public class PatientMenuManager extends MenuManager implements MenuService {
 
     Complaints complaints = new Complaints();
     LastStatuses lastStatuses = new LastStatuses();
+
+    InputValidator inputValidator = new InputValidator();
 
     @Override
     public void getSelectionMenu() {
@@ -60,7 +65,6 @@ public class PatientMenuManager extends MenuManager implements MenuService {
                 getSelectionMenu();
             }
 
-
             switch (select) {
                 case 1:
                     addUser();
@@ -85,7 +89,7 @@ public class PatientMenuManager extends MenuManager implements MenuService {
                     search(4);
                     break;
 //                case 8:
-//                    search(5);
+//                    search(5); //Cinsiyete göre arama - sonra yapi uyarlanacak
 //                    break;
                 case 9:
                     Start.start();
@@ -101,7 +105,6 @@ public class PatientMenuManager extends MenuManager implements MenuService {
         } while (true);
     }
 
-
     @Override
     public void getUserList() {
         patients.showUsers();
@@ -111,8 +114,7 @@ public class PatientMenuManager extends MenuManager implements MenuService {
     @Override
     public void search(int choise) {
 
-        String strId = "0";
-        int id=0;
+        String id = "0";
         int flag = 0;
         if (choise == 1) {
 
@@ -121,118 +123,76 @@ public class PatientMenuManager extends MenuManager implements MenuService {
                     forEach(t -> System.out.println(t.getId() + " --> " + t.getComplaint()));
 
             System.out.println("\nSikayet Id'sini giriniz: ");
-
-            try{
-                strId = inp.nextLine();
-                id= Integer.parseInt(strId);
-            }
-            catch (Exception e){
-                System.out.println("Lütfen seciminizini sayi olarak giriniz");
-                this.search(1);
-            }
+            inp.nextLine();
+            id = inputValidator.isNotNumeric();
 
             System.out.printf("%-14s  %-15s  %-15s  %-14s  %-14s  %-9s  %-13s %-14s %-16s\n", "Randevu Kodu", "Hasta Ad", "Hasta Soyad", "TC NO", "Dogum Tarihi", "Cinsiyet", "Aciliyet", "Sikayet", "Islem Durumu");
-            System.out.printf("%-14s  %-15s  %-15s  %-14s  %-14s  %-9s  %-13s %-14s %-16s\n","----------","--------","-----------","-----","------------","--------","--------","-------","------------");
+            System.out.printf("%-14s  %-15s  %-15s  %-14s  %-14s  %-9s  %-13s %-14s %-16s\n", "----------", "--------", "-----------", "-----", "------------", "--------", "--------", "-------", "------------");
 
             for (Patients w : patientsList) {
-                if (w.getComplaint().getId() == (id)) {
+                if (w.getComplaint().getId() == Integer.parseInt(id)) {
                     flag++;
                     System.out.printf("%-14s  %-15s  %-15s  %-14s  %-14s  %-9s  %-13s %-14s %-16s\n", w.getId(), w.getFirstName(), w.getLastName(), w.getTcNo(), w.getBirthDate(), w.getGender(), w.getPriority(), w.getComplaint(), w.getLastStatus());
                 }
             }
+
         } else if (choise == 2) {
             System.out.println("Hangi aciliyete göre arama yapmak istiyorsunuz?");
             prioritiesList.
-                    forEach(t -> System.out.println( t.getId() + " --> " + t.getPriority()));
+                    forEach(t -> System.out.println(t.getId() + " --> " + t.getPriority()));
 
             System.out.println("\nAciliyet strId'sini giriniz: ");
-
-            try{
-                strId = inp.nextLine().replaceAll("[^0-9]", "");
-            }
-            catch (NumberFormatException nf){
-                System.out.println("Lütfen seciminizini sayi olarak giriniz");
-                search(2);
-            }
+            inp.nextLine();
+            id = inputValidator.isNotNumeric();
 
             System.out.printf("%-14s  %-15s  %-15s  %-14s  %-14s  %-9s  %-13s %-14s %-16s\n", "Randevu Kodu", "Hasta Ad", "Hasta Soyad", "TC NO", "Dogum Tarihi", "Cinsiyet", "Aciliyet", "Sikayet", "Islem Durumu");
-            System.out.printf("%-14s  %-15s  %-15s  %-14s  %-14s  %-9s  %-13s %-14s %-16s\n","----------","--------","-----------","-----","------------","--------","--------","-------","------------");
+            System.out.printf("%-14s  %-15s  %-15s  %-14s  %-14s  %-9s  %-13s %-14s %-16s\n", "----------", "--------", "-----------", "-----", "------------", "--------", "--------", "-------", "------------");
 
             for (Patients w : patientsList) {
-                if (w.getPriority().getId() == Integer.parseInt(strId)) {
+                if (w.getPriority().getId() == Integer.parseInt(id)) {
                     flag++;
                     System.out.printf("%-14s  %-15s  %-15s  %-14s  %-14s  %-9s  %-13s %-14s %-16s\n", w.getId(), w.getFirstName(), w.getLastName(), w.getTcNo(), w.getBirthDate(), w.getGender(), w.getPriority(), w.getComplaint(), w.getLastStatus());
                 }
             }
-
 
         } else if (choise == 3) {
             System.out.println("Hangi TC NO'ya göre arama yapmak istiyorsunuz?");
             patientsList.
-                    forEach(t -> System.out.println("TC No: " + t.getTcNo() +  " --> "   + t.getId() + " "+ t.getFirstName() + " "+ t.getLastName() + " " ));
+                    forEach(t -> System.out.println("TC No: " + t.getTcNo() + " --> " + t.getId() + " " + t.getFirstName() + " " + t.getLastName() + " "));
 
             System.out.println("\nHasta TC NO'sunu giriniz: ");
-
-            try{
-                strId = inp.nextLine().replaceAll("[^0-9]", "");
-            }
-            catch (NumberFormatException nf){
-                System.out.println("Lütfen seciminizini sayi olarak giriniz");
-                search(3);
-            }
+            inp.nextLine();
+            id = inputValidator.isNotNumeric();
 
             System.out.printf("%-14s  %-15s  %-15s  %-14s  %-14s  %-9s  %-13s %-14s %-16s\n", "Randevu Kodu", "Hasta Ad", "Hasta Soyad", "TC NO", "Dogum Tarihi", "Cinsiyet", "Aciliyet", "Sikayet", "Islem Durumu");
-            System.out.printf("%-14s  %-15s  %-15s  %-14s  %-14s  %-9s  %-13s %-14s %-16s\n","----------","--------","-----------","-----","------------","--------","--------","-------","------------");
+            System.out.printf("%-14s  %-15s  %-15s  %-14s  %-14s  %-9s  %-13s %-14s %-16s\n", "----------", "--------", "-----------", "-----", "------------", "--------", "--------", "-------", "------------");
 
             for (Patients w : patientsList) {
-                if (w.getTcNo().equals(strId)) {
+                if (w.getTcNo().equals(id)) {
                     flag++;
                     System.out.printf("%-14s  %-15s  %-15s  %-14s  %-14s  %-9s  %-13s %-14s %-16s\n", w.getId(), w.getFirstName(), w.getLastName(), w.getTcNo(), w.getBirthDate(), w.getGender(), w.getPriority(), w.getComplaint(), w.getLastStatus());
                 }
             }
+
         } else if (choise == 4) {
             System.out.println("Hangi randevu numarasina göre arama yapmak istiyorsunuz?");
             patientsList.
-                    forEach(t -> System.out.println("Randevu Kodu: " + t.getId() + " --> " + t.getId()));
+                    forEach(t -> System.out.println("Randevu Kodu: " + t.getId() + " --> " + t.getFirstName() + " " + t.getLastName() + " " + t.getTcNo()));
 
             System.out.println("\nRandevu numarasini giriniz: ");
-
-            try{
-                strId = inp.nextLine().replaceAll("[^0-9]", "");
-            }
-            catch (NumberFormatException nf){
-                System.out.println("Lütfen seciminizini sayi olarak giriniz");
-                search(4);
-            }
+            inp.nextLine();
+            id = inp.next();
 
             System.out.printf("%-14s  %-15s  %-15s  %-14s  %-14s  %-9s  %-13s %-14s %-16s\n", "Randevu Kodu", "Hasta Ad", "Hasta Soyad", "TC NO", "Dogum Tarihi", "Cinsiyet", "Aciliyet", "Sikayet", "Islem Durumu");
-            System.out.printf("%-14s  %-15s  %-15s  %-14s  %-14s  %-9s  %-13s %-14s %-16s\n","----------","--------","-----------","-----","------------","--------","--------","-------","------------");
+            System.out.printf("%-14s  %-15s  %-15s  %-14s  %-14s  %-9s  %-13s %-14s %-16s\n", "----------", "--------", "-----------", "-----", "------------", "--------", "--------", "-------", "------------");
 
             for (Patients w : patientsList) {
-                if (w.getId().equals(strId)) {
+                if (w.getId().equals(id)) {
                     flag++;
                     System.out.printf("%-14s  %-15s  %-15s  %-14s  %-14s  %-9s  %-13s %-14s %-16s\n", w.getId(), w.getFirstName(), w.getLastName(), w.getTcNo(), w.getBirthDate(), w.getGender(), w.getPriority(), w.getComplaint(), w.getLastStatus());
                 }
             }
         }
-//        else if (choise == 5) {
-//            System.out.println("Hangi cinsiyete göre arama yapmak istiyorsunuz?");
-//            genderList.
-//                    forEach(t -> System.out.println("Id:" + t.getId() + " --> " + t.getTittle()));
-//
-//            System.out.println("\nÜnvan strId'sini giriniz: ");
-//            strId = inp.nextLine().replaceAll("[^0-9]", "");
-//
-//            System.out.printf("%-13s  %-15s  %-15s  %-17s  %-15s  %-12s \n", "Doktor Kodu", "Doktor Ad", "Doktor Soyad", "Ünvan", "Brans", "Doktor Durum");
-//            System.out.printf("%-13s  %-15s  %-15s  %-17s  %-15s  %-12s \n", "------------", "--------", "------------", "-----", "-----", "-----------");
-//
-//            for (Doctors w : doctorsList) {
-//                if (w.getTitle().getId() == Integer.parseInt(strId)) {
-//                    flag++;
-//                    System.out.printf("%-13s  %-15s  %-15s  %-17s  %-15s  %-12s \n", w.getId(), w.getFirstName(), w.getLastName(), w.getTitle(), w.getBranch(), w.getDoctorSituation());
-//                }
-//            }
-//        }-
 
         System.out.println("------------------------------------------------------------------------------------------------");
         if (flag == 0) {
@@ -240,7 +200,6 @@ public class PatientMenuManager extends MenuManager implements MenuService {
         } else {
             System.out.println("Aradığınız kriterde " + flag + " tane hasta bulundu...");
         }
-
     }
 
     @Override
@@ -270,10 +229,7 @@ public class PatientMenuManager extends MenuManager implements MenuService {
                 String message = "Güncel hasta listemiz:";
                 Slow.slowPrint(message, 30);
                 this.getUserList();
-
             }
         } while (!select.equalsIgnoreCase("q"));
-
     }
-
 }

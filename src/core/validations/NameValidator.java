@@ -15,9 +15,11 @@ public class NameValidator {
             if (!s.isEmpty()) {
                 System.out.println("Harf dışında bir karakter girilemez...");
                 System.out.println("Tekrar deneyiniz: ");
+
             } else if (firstName.length() < 2 || firstName.length() > 20) {
                 System.out.println("İsminiz en az 3 ve en fazla 20 harf içermelidir...");
                 System.out.println("Tekrar deneyiniz: ");
+
             } else {
                 firstName = firstName.substring(0, 1).toUpperCase() + firstName.substring(1);
                 break;
@@ -38,9 +40,11 @@ public class NameValidator {
             if (!s.isEmpty()) {
                 System.out.println("Harf dışında bir karakter girilemez...");
                 System.out.println("Tekrar deneyiniz: ");
+
             } else if (lastName.length() < 2 || lastName.length() > 30) {
                 System.out.println("Soyadiniz en az 3 ve en fazla 30 harf içermelidir...");
                 System.out.println("Tekrar deneyiniz: ");
+
             } else {
                 lastName = lastName.substring(0, 1).toUpperCase() + lastName.substring(1);
                 break;

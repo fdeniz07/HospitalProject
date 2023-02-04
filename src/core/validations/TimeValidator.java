@@ -12,8 +12,11 @@ public class TimeValidator {
         LocalTime time = null;
         int saat,dakika;
         int saniye=0;
+
         System.out.println("Lutfen zaman bilgisini saat / dakika (10:00) olacak sekilde giriniz");
+
         boolean isDigit;
+
         do {
             isDigit = false;
             System.out.print(" saat: ");
@@ -30,6 +33,7 @@ public class TimeValidator {
             }
             try {
                 time = LocalTime.of(saat, dakika, saniye);
+
             } catch (Exception e) {
                 System.out.println(" Lutfen gecerli bir saat giriniz.");
                 isDigit = true;

@@ -6,6 +6,9 @@ import java.util.Scanner;
 
 public class PickUpReturnDateValidator {
 
+    // Bu kisim randevu icin daha sonra tarih kontrolü icin kullanilacaktir!
+
+
     boolean isDigit;
     LocalDate temporalDate;
 
@@ -27,14 +30,17 @@ public class PickUpReturnDateValidator {
                 ay = scanner.nextInt();
                 System.out.print(" yil: ");
                 yil = scanner.nextInt();
+
             } catch (InputMismatchException e) {
                 System.out.println("Girdiginiz degerler rakam olmalidir.");
                 scanner.nextLine();
                 isDigit = true;
                 continue;
             }
+
             try {
                 date = LocalDate.of(yil, ay, gun);
+
             } catch (Exception e) {
                 System.out.println(" Lutfen gecerli bir tarih giriniz.");
                 isDigit = true;
@@ -69,14 +75,17 @@ public class PickUpReturnDateValidator {
                 ay = scanner.nextInt();
                 System.out.print(" yil: ");
                 yil = scanner.nextInt();
+
             } catch (InputMismatchException e) {
                 System.out.println("Girdiginiz degerler rakam olmalidir.");
                 scanner.nextLine();
                 isDigit = true;
                 continue;
             }
+
             try {
                 returnDate = LocalDate.of(yil, ay, gun);
+
             } catch (Exception e) {
                 System.out.println(" Lutfen gecerli bir tarih giriniz.");
                 isDigit = true;
@@ -86,6 +95,7 @@ public class PickUpReturnDateValidator {
                 if (temporalDate.isBefore(returnDate)) {
                     isDigit = false;
                 }
+
             } catch (Exception e) {
                 System.out.println("Teslim tarihi rezervasyon tarihinden önce olamaz!");
                 isDigit = true;

@@ -58,13 +58,21 @@ public class Complaints {
         Complaints complaint2 = new Complaints(2, "Kusma");
         Complaints complaint3 = new Complaints(3, "Zehirlenme");
         Complaints complaint4 = new Complaints(4, "Kalp Krizi");
-        Complaints complaint5 = new Complaints(5, "Beyin Kanamasi");
+        Complaints complaint5 = new Complaints(5, "Trawma");
+        Complaints complaint6 = new Complaints(5, "Yaralanma");
+        Complaints complaint7 = new Complaints(5, "Bel Agrisi");
+        Complaints complaint8 = new Complaints(5, "Gögüs Agrisi");
+        Complaints complaint9 = new Complaints(5, "Iltihap");
 
         complaintsList.add(complaint1);
         complaintsList.add(complaint2);
         complaintsList.add(complaint3);
         complaintsList.add(complaint4);
         complaintsList.add(complaint5);
+        complaintsList.add(complaint6);
+        complaintsList.add(complaint7);
+        complaintsList.add(complaint8);
+        complaintsList.add(complaint9);
     }
 
     public static Complaints getComplaintById(int id) {

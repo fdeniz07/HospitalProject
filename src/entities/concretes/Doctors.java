@@ -2,7 +2,6 @@ package entities.concretes;
 
 import entities.abstracts.Users;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,13 +11,11 @@ public class Doctors extends Users {
     private Branches branch;
     private DoctorSituation doctorSituation;
 
-
     public static List<Doctors> doctorsList = new ArrayList<>();
 
     public Doctors() {
 
     }
-
 
     public Doctors(Titles title, Branches branch, DoctorSituation doctorSituation) {
         this.title = title;
@@ -71,7 +68,6 @@ public class Doctors extends Users {
                         ", doktor durumu=" + doctorSituation;
     }
 
-
     //Izinli,Ameliyatta,Müsait,Muayenede
 
     public void fillDoctorList() {
@@ -88,7 +84,6 @@ public class Doctors extends Users {
         doctorsList.add(doctor4);
         doctorsList.add(doctor5);
         doctorsList.add(doctor6);
-
     }
 
     @Override
@@ -101,7 +96,6 @@ public class Doctors extends Users {
             System.out.printf("%-13s  %-15s  %-15s  %-17s  %-15s  %-12s \n", w.getId(), w.getFirstName(), w.getLastName(), w.getTitle(), w.getBranch(), w.getDoctorSituation());
         }
         System.out.println();
-
     }
 
     public static Doctors getDoctorById(String id){

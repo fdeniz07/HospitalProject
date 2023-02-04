@@ -1,9 +1,8 @@
 package core.Helpers;
 
-public class Utilitiess {
+public class Utilities {
 
     public static void getDoctorSituationListById(String id){
-
 
     }
 }

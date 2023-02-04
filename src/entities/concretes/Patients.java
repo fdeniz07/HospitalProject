@@ -3,7 +3,6 @@ package entities.concretes;
 import core.Helpers.Gender;
 import entities.abstracts.Users;
 
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -74,6 +73,7 @@ public class Patients extends Users {
     public void setLastStatus(LastStatuses lastStatus) {
         this.lastStatus = lastStatus;
     }
+
     @Override
     public String toString() {
         return
@@ -87,6 +87,7 @@ public class Patients extends Users {
                         ", Sikayet : "+ complaint +
                         ", Islem Durumu :" + lastStatus;
     }
+
     public void fillPatientsList(){
         Patients patient1 = new Patients("HT1001556","Ali","Tekin","11223344556",LocalDate.of(1990,10,19),Gender.getGender(1),Priorities.getPrioritiesById(31),Complaints.getComplaintById(1),LastStatuses.getLastStatusById(2));
         Patients patient2 = new Patients("HT1002667","Ramiz","Karaeski","22334455667",LocalDate.of(1999,6,29),Gender.getGender(1),Priorities.getPrioritiesById(33),Complaints.getComplaintById(2),LastStatuses.getLastStatusById(2));
@@ -114,7 +115,6 @@ public class Patients extends Users {
             System.out.printf("%-14s  %-15s  %-15s  %-14s  %-14s  %-9s  %-13s %-14s %-16s\n",w.getId(),w.getFirstName(),w.getLastName(),w.getTcNo(),w.getBirthDate() ,w.getGender(),w.getPriority(),w.getComplaint(),w.getLastStatus());
         }
         System.out.println();
-
     }
 
     public static Patients getPatientById(String id){

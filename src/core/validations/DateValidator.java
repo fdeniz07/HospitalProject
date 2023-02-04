@@ -16,20 +16,24 @@ public class DateValidator {
         do {
             isDigit = false;
             System.out.print(" gun: ");
+
             try {
                 gun = scanner.nextInt();
                 System.out.print(" ay : ");
                 ay = scanner.nextInt();
                 System.out.print(" yil: ");
                 yil = scanner.nextInt();
+
             } catch (InputMismatchException e) {
                 System.out.println("Girdiginiz degerler rakam olmalidir.");
                 scanner.nextLine();
                 isDigit = true;
                 continue;
             }
+
             try {
                 date = LocalDate.of(yil, ay, gun);
+
             } catch (Exception e) {
                 System.out.println(" Lutfen gecerli bir tarih giriniz.");
                 isDigit = true;

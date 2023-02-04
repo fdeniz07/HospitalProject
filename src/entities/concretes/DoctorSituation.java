@@ -1,6 +1,5 @@
 package entities.concretes;
 
-
 import java.util.ArrayList;
 import java.util.List;
 

@@ -6,6 +6,7 @@ public class Slow {
 
         for (char c : message.toCharArray()) {
             System.out.print(c);
+
             try {
                 Thread.sleep(delay);
             } catch (InterruptedException e) {

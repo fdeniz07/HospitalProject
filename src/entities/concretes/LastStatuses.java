@@ -59,7 +59,6 @@ public class LastStatuses {
 
         lastStatusesList.add(status1);
         lastStatusesList.add(status2);
-
     }
 
     public static LastStatuses getLastStatusById(int id) {
