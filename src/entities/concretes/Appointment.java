@@ -1,22 +1,32 @@
 package entities.concretes;
 
+import entities.abstracts.EntityBase;
+
+import java.time.LocalDateTime;
+
 //6-Randevu:
 //            -id : otomatik üretilsin
 //            -hasta adı,Doktor,randevu tarihi
-public class Appointment {
+public class Appointment extends EntityBase {
 
     private static int count = 0;
-    private int id;
+
     private Patients patient;
     private Doctors doctor;
     private String appointmentDate;
+    private String appointmentTime;
 
-    public Appointment(Patients patient, Doctors doctor, String appointmentDate) {
-        count++;
-        this.id = count;
+
+    public Appointment(LocalDateTime createdDate) {
+        super(createdDate);
+    }
+
+    public Appointment(String id, LocalDateTime createdDate, LocalDateTime modifiedDate, String createdByName, String modifiedByName, boolean isDeleted, boolean isActive, Patients patient, Doctors doctor, String appointmentDate, String appointmentTime) {
+        super(id, createdDate, modifiedDate, createdByName, modifiedByName, isDeleted, isActive);
         this.patient = patient;
         this.doctor = doctor;
         this.appointmentDate = appointmentDate;
+        this.appointmentTime = appointmentTime;
     }
 
     public static int getCount() {
@@ -25,14 +35,6 @@ public class Appointment {
 
     public static void setCount(int count) {
         Appointment.count = count;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public Patients getPatient() {
@@ -59,13 +61,19 @@ public class Appointment {
         this.appointmentDate = appointmentDate;
     }
 
+    public String getAppointmentTime() {
+        return appointmentTime;
+    }
+
+    public void setAppointmentTime(String appointmentTime) {
+        this.appointmentTime = appointmentTime;
+    }
+
     @Override
     public String toString() {
-        return
-                "id=" + id +
-                ", patient=" + patient +
+        return  "patient=" + patient +
                 ", doctor=" + doctor +
-                ", date='" + appointmentDate + '\''
-                ;
+                ", appointmentDate='" + appointmentDate + '\'' +
+                ", appointmentTime='" + appointmentTime + '\'';
     }
 }
