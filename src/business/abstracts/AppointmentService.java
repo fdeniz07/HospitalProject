@@ -6,9 +6,11 @@ import java.util.List;
 
 public interface AppointmentService {
 
-     Appointment getAppointment();
+     Appointment createAppointment();
 
-     Appointment cancelAppointment();
+     Appointment getAppointment(String id);
+
+     Appointment cancelAppointment(String id);
 
      List<Appointment> getAllAppointmentsList();
 
